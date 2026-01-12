@@ -1,8 +1,9 @@
-function App() {
+import Layout from "./components/Layout";
 
+function App() {
   return (
     <div>
-      <h1>Flashcard</h1>
+      <Layout />
     </div>
   );
 }
