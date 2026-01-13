@@ -1,23 +1,54 @@
+import { useState } from "react";
+
 const Card = () => {
+  const [turnOn, setTurnOn] = useState(false);
+
   return (
-    <div className="bg-[#0d140d] p-8 pb-4 min-w-[500px] border border-green-500/30 rounded-sm shadow-[0_0_20px_rgba(34,197,94,0.1)] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-6 bg-green-900/20 border-b border-green-500/20 flex items-center px-2 py-4 gap-1">
-        <div className="w-2 h-2 rounded-full bg-green-900"></div>
-        <div className="w-2 h-2 rounded-full bg-green-900"></div>
-        <h1 className=" p-2 font-mono text-green-400 drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]">
-          Java Collection
-        </h1>
-      </div>
-      <div>
-        <p className="text-green-900 pt-2 tracking-tighter">
-          How the command to build a project in Java?
-        </p>
-        <div className="flex justify-end">
-          <button className="text-green-800 font-semibold mt-4 bg-green-500 p-2 py-1">
-            [ See Details ]
-          </button>
+    <div className="space-y-2">
+      <div className="bg-[#0d140d] p-8 pb-4 min-w-[800px] border border-green-500/30 rounded-sm shadow-[0_0_20px_rgba(34,197,94,0.1)] relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-6 bg-green-900/20 border-b border-green-500/20 flex items-center px-2 py-4 gap-1">
+          <div className="w-3 h-3 rounded-full bg-green-900"></div>
+          <div className="w-3 h-3 rounded-full bg-green-900"></div>
+          <h1 className=" p-2 font-mono text-xl text-green-400 drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]">
+            Java Collection
+          </h1>
+        </div>
+        <div>
+          <p className="text-green-600 pt-4 tracking-tighter text-lg">
+            What is the command to build a Java project?
+          </p>
+          <div className="flex justify-end">
+            <button
+              onClick={() => setTurnOn(!turnOn)}
+              className={`font-semibold mt-4 border p-2 py-1 text-green-600 border-green-600 bg-[#0d140d] ${
+                turnOn && "bg-green-500 border-green-500 text-green-900"
+              }`}
+            >
+              [ See Details ]
+            </button>
+          </div>
         </div>
       </div>
+      {turnOn && (
+        <div className="bg-[#0d140d] p-2 min-w-[500px] border border-green-500/30 rounded-sm shadow-[0_0_20px_rgba(34,197,94,0.1)] relative overflow-hidden">
+          <div className="flex flex-col">
+            <h1 className="p-2 mb-2 font-mono text-green-600 text-md">
+              Using javac project.java
+            </h1>
+            <div className="flex justify-between space-x-2 shadow-[0_0_20px_rgba(34,197,94,0.1)] relative">
+              <button className="hover:bg-green-500 hover:text-green-800 font-semibold w-full p-2 font-mono text-green-600 border border-green-600">
+                Don't remember
+              </button>
+              <button className="hover:bg-green-500 hover:text-green-800 font-semibold w-full p-2 font-mono text-green-600 border border-green-600">
+                Remember
+              </button>
+              <button className="hover:bg-green-500 hover:text-green-800 font-semibold w-full p-2 font-mono text-green-600 border border-green-600">
+                More or Less
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
