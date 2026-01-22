@@ -10,7 +10,7 @@ const AddFlashcard = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
       id: FlashcardService().getFlashcards().length + 1,
       question,
       answer,
-      status: "Average"
+      status: "Average",
     });
     setQuestion("");
     setAnswer("");
@@ -22,7 +22,7 @@ const AddFlashcard = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
 
   return (
     <div className="flex absolute p-4 items-center justify-center w-full h-full bg-black/60 top-0 left-0 backdrop-blur-sm z-50">
-      <div className="bg-[#0d140d] p-8 min-w-[400px] border border-green-500/30 rounded-sm shadow-[0_0_30px_rgba(34,197,94,0.15)] relative overflow-hidden">
+      <div className="bg-[#0d140d] p-8 max-sm:min-w-[350px] min-w-[400px] border border-green-500/30 rounded-sm shadow-[0_0_30px_rgba(34,197,94,0.15)] relative overflow-hidden">
         <form
           className="flex flex-col gap-5"
           onSubmit={(e) => {
@@ -82,6 +82,6 @@ const AddFlashcard = ({ setOpen }: { setOpen: (open: boolean) => void }) => {
       </div>
     </div>
   );
-}
+};
 
 export default AddFlashcard;
