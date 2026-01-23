@@ -20,8 +20,8 @@ taskipy = "^1.14.1"
 pythonpath = "."
 
 [tool.taskipy.tasks]
-run = 'fastapi dev src/app.py'
-test = 'pytest -s -x --cov=src -vv'
+run = 'set PYTHONPATH=src&& fastapi dev src/app.py'
+test = 'set PYTHONPATH=src&& pytest -s -x --cov=src -vv'
 pos_test = 'coverage html'
 
 [build-system]
