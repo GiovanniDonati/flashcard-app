@@ -6,11 +6,23 @@ authors = [
     {name = "GiovanniDonati",email = "grdonati99@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13, <4.0"
 dependencies = [
     "fastapi[standard] (>=0.128.0,<0.129.0)"
 ]
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+pytest-cov = "^7.0.0"
+taskipy = "^1.14.1"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+
+[tool.taskipy.tasks]
+run = 'fastapi dev src/app.py'
+test = 'pytest -s -x --cov=src -vv'
+pos_test = 'coverage html'
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
