@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from src.settings import Settings
+from config.settings import Settings
 from src.domain.User import table_registry
 
 config = context.config
