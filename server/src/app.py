@@ -1,12 +1,13 @@
 from http import HTTPStatus
 from fastapi import FastAPI
 
-from schema.UtilsSchema import Message
-from controller import UserController
+from schema.UtilSchema import Message
+from controller import UserController, AuthController
 
 router = FastAPI()
 
 router.include_router(UserController.router)
+router.include_router(AuthController.router)
 
 
 @router.get(

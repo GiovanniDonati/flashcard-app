@@ -2,10 +2,11 @@ from fastapi import HTTPException
 from http import HTTPStatus
 from sqlalchemy import select
 
+from config.security import get_password_hash
 from domain.User import User
 
 
-def get_users_service(session, user, limit, skip):
+def get_all_users_service(session, user, limit, skip):
     query = select(User)
     if user:
         query = query.where(User.username == user)
@@ -46,8 +47,9 @@ def create_user_service(user, session):
                 detail="Email already exists",
             )
 
+    hashed_password = get_password_hash(user.password)
     db_user = User(
-        username=user.username, password=user.password, email=user.email
+        username=user.username, password=hashed_password, email=user.email
     )
     session.add(db_user)
     session.commit()
@@ -65,12 +67,10 @@ def update_user_service(user_id, user, session):
             detail="User not found",
         )
 
-    if user.username:
-        db_user.username = user.username
-    if user.email:
-        db_user.email = user.email
-    if user.password:
-        db_user.password = user.password
+    for key, value in user.model_dump(exclude_unset=True).items():
+        if key == "password":
+            value = get_password_hash(value)
+        setattr(db_user, key, value)
 
     session.commit()
 
