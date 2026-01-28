@@ -43,27 +43,3 @@ def update_user(user_id: int, user: UserUpdate, session: T_Session):
 @router.delete("/{user_id}", status_code=HTTPStatus.OK)
 def delete_user(user_id: int, session: T_Session):
     return delete_user_service(user_id, session)
-
-
-@router.post("/token", response_model=Token)
-def login_for_access_token(
-    form_data: OAuth2PasswordRequestForm = Depends(),
-    session: Session = Depends(get_session),
-):
-    user = session.scalar(select(User).where(User.email == form_data.username))
-
-    if not user:
-        raise HTTPException(
-            status_code=HTTPStatus.UNAUTHORIZED,
-            detail="Incorrect email or password",
-        )
-
-    if not verify_password(form_data.password, user.password):
-        raise HTTPException(
-            status_code=HTTPStatus.UNAUTHORIZED,
-            detail="Incorrect email or password",
-        )
-
-    access_token = create_access_token(data={"sub": user.email})
-
-    return {"access_token": access_token, "token_type": "bearer"}

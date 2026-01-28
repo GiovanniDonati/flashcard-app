@@ -41,6 +41,7 @@ def session():
 def user(session):
     password = "testtest"
     user = User(
+        name="Teste",
         username="Teste",
         email="teste@test.com",
         password=get_password_hash(password),

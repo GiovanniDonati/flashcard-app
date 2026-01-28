@@ -4,7 +4,7 @@ from domain.User import User
 
 
 def test_create_user(session):
-    new_user = User(username="donati", password="secret", email="teste@test")
+    new_user = User(name="Giovanni",username="donati", password="secret", email="teste@test")
     session.add(new_user)
     session.commit()
 
