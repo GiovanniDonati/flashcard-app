@@ -15,6 +15,7 @@ def test_create_user_return_created(client):
 
     assert response.status_code == HTTPStatus.CREATED
     assert response.json() == {
+        "id": 1,
         "name": "Giovanni",
         "username": "donati_dev",
         "email": "donati_dev@dev.com",
