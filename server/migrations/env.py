@@ -5,8 +5,10 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from config.settings import Settings
-from src.domain.User import table_registry
+from src.config.settings import Settings
+from src.domain.db_registry import table_registry
+from src.domain.User import User
+from src.domain.Category import Category
 
 config = context.config
 config.set_main_option("sqlalchemy.url", Settings().DATABASE_URL)
