@@ -6,7 +6,9 @@ from sqlalchemy.orm import Session
 from config.database import get_session
 from config.security import get_password_hash
 from app import router
-from domain.User import User, table_registry
+from domain.db_registry import table_registry
+from domain.Category import Category
+from domain.User import User
 
 
 @pytest.fixture
@@ -53,3 +55,15 @@ def user(session):
     user.clean_password = password
 
     return user
+
+
+@pytest.fixture
+def category(session):
+    category = Category(
+        name="Test Category",
+    )
+    session.add(category)
+    session.commit()
+    session.refresh(category)
+
+    return category
