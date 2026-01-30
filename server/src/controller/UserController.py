@@ -1,14 +1,11 @@
 from http import HTTPStatus
-from fastapi.security import OAuth2PasswordRequestForm
 from typing_extensions import Annotated
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from config.database import get_session
-from config.security import create_access_token, verify_password
 from schema.UserSchema import UserList, UserPublic, UserRequest, UserUpdate
-from schema.UtilSchema import Token
 from service.UserService import *
 
 router = APIRouter(prefix="/users", tags=["Users"])
